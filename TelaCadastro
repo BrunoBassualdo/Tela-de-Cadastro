@@ -1,0 +1,61 @@
+<html ng-app="cadastro">
+<head>
+	<meta charset="utf-8">
+	<title>Tela de Cadastro</title>
+	
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+
+	<style>
+		.jumbotron{
+			width: 400px;
+			text-align: center;
+			margin-top: 30px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	</style>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	
+	
+	<script>
+		angular.module("cadastro", []);
+		angular.module("cadastro").controller("control", function ($scope){
+			$scope.app = "Tela de Cadastro";
+
+			$scope.sexo = ["Masculino", "Feminino"];
+		});
+	</script>
+</head>
+<body ng-controller="control">
+	<div class="jumbotron">
+		<h3>{{app}}</h3>
+
+		<hr></hr>
+		<form name="cadastroForm">
+			<input class="form-control" type="text" name="nome" placeholder="Nome">
+			<br>
+			<select class="form-control" ng-model="selectSexo" ng-options="x for x in sexo">
+				<option value="">Selecione Sexo</option>
+			</select>
+			<br>
+			<input class="form-control" type="text" name="telefone" placeholder="Telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/">
+			<br>
+			<input class="form-control" type="text" name="cpf" placeholder="CPF">
+			<br>
+			<input class="form-control" type="text" name="rg" placeholder="RG">
+			<br>
+			<input class="form-control" type="text" name="endereco" placeholder="Endereço">
+			<br>
+			<input class="form-control" type="text" name="bairro" placeholder="Bairro">
+			<br>
+			<input class="form-control" type="text" name="cidade" placeholder="Cidade">
+			<br>
+		</form>
+
+		<hr></hr>
+		<div>
+			<button class="btn btn-primary" ng-disabled="cadastroForm.$invalid">Cadastrar</button>
+		</div>	
+</body>
+</html>	
