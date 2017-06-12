@@ -1,0 +1,66 @@
+<html ng-app="telaListagem">
+<head>
+	<meta charset="UTF-8">
+	<title>Tela de Listagem</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style>
+		.jumbotron {
+			width: 600px;
+			text-align: center;
+			margin-top: 20px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		h3 {
+			margin-bottom: 30px;
+		}
+		.table {
+			margin-top: 20px;
+		}
+		.form-control {
+			margin-bottom: 5px;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	
+	<script>
+		angular.module("telaListagem", []);
+		angular.module("telaListagem").controller("control", function ($scope) {
+			$scope.app = "Lista Listagem";
+			$scope.contatos = [
+				{nome: "Pedro", telefone: "99998888", sexo: "Masculino", data: new Date()},
+				{nome: "Ana", telefone: "99998877", sexo: "Feminino", data: new Date(),},
+				{nome: "Maria", telefone: "99998866", sexo: "Feminino", data: new Date()},
+				{nome: "Fatima", telefone: "99998866", sexo: "Feminino", data: new Date()},
+				{nome: "Rodrigo", telefone: "99998866", sexo: "Masculino", data: new Date()}
+			];
+			
+		});
+	</script>
+</head>
+<body ng-controller="control">
+	<div class="jumbotron">
+		<h3>{{app}}</h3>
+		<input type="text" ng-model="criteriodeBusca" placeholder="O que voce esta procurando" class="form-control">
+		<table ng-show="contatos.length > 0" class="table">
+			<tr>
+				<th></th>
+				<th>Nome</th>
+				<th>Telefone</th>
+				<th>Sexo</th>
+				<th>Data</th>
+				<th></th>
+			</tr>
+			<tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | filter:criteriodeBusca | orderBy: 'nome'">
+				<td></td>
+				<td>{{contato.nome}}</td>
+				<td>{{contato.telefone}}</td>
+				<td>{{contato.sexo}}</td>
+				<td>{{contato.data | date:'dd/MM/yyyy'}}</td>
+			</tr>
+		</table>
+		<hr/>
+		
+	</div>
+</body>
+</html>
